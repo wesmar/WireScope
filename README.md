@@ -396,17 +396,17 @@ Disassembly of `IOCTL_NDISRD_SET_PACKET_FILTERS` at `0x140002481`, the table all
 - **4-Byte Table Header:** At `0x140002481`, the driver validates `InputBufferLength >= 0xB9` — 185 bytes — and computes the required buffer size as `m_TableSize * 0xB5 + 4`. `STATIC_FILTER_TABLE_HEADER` is a single 4-byte `DWORD m_TableSize` with no alignment padding; the first `STATIC_FILTER` entry begins at table offset `+0x04`. Adding an 8-byte header shifts every entry by 4 bytes, placing the upper 32 bits of `m_Adapter` into `m_dwDirectionFlags` at `table + 0x0C` so `test [rsi+0x10], eax` at `0x140001253` evaluates to zero and skips every rule.
 - **181-Byte `STATIC_FILTER` Entry Layout:** Each entry occupies `0xB5` = 181 bytes under `#pragma pack(push, 1)`:
 
-| Entry Offset | Table Offset | Size | Field | Disassembly Reference in `sub_140001150` / `sub_140001C18` |
-|---|---|---|---|---|
-| `+0x00` | `+0x04` | `8 B` | `uint64_t m_Adapter` | `0x14000123C: mov rax, [rdx+rbx+4]` — `0` matches all adapters |
-| `+0x08` | `+0x0C` | `4 B` | `DWORD m_dwDirectionFlags` | `0x14000124F: mov eax, [rdx+rbx+0xC]` — tested against `m_dwDeviceFlags` |
-| `+0x0C` | `+0x10` | `4 B` | `DWORD m_FilterAction` | `0x140001618: mov r14d, [rcx+rbx+0x10]` — `1` PASS, `2` DROP, `3` REDIRECT, `4` PASS_RDR |
-| `+0x10` | `+0x14` | `4 B` | `DWORD m_ValidFields` | `0x14000125C: mov r8d, [rdx+rbx+0x14]` — `1` L2, `2` L3, `4` L4 |
-| `+0x14` | `+0x18` | `4 B` | `DWORD m_LastReset` | `0x140001CD2: mov [r8+rcx+0x18], esi` — initialized on table load |
-| `+0x18..+0x30` | `+0x1C..+0x34` | `32 B` | `m_PacketsIn`, `m_BytesIn`, `m_PacketsOut`, `m_BytesOut` | Zeroed at `0x140001CDE..0x140001D02`; incremented at `0x140001637..0x1400016FA` |
-| `+0x38` | `+0x3C` | `24 B` | `DATA_LINK_LAYER_FILTER m_DataLinkFilter` | `0x140001267: cmp dword ptr [rdx+rbx+0x3C], 1` — Ethernet MACs and EtherType |
-| `+0x50` | `+0x54` | `84 B` | `NETWORK_LAYER_FILTER m_NetworkFilter` | `0x1400012F1: mov edx, [rcx+rbx+0x54]` — IPv4 32 B / IPv6 80 B with 3 B trailing padding |
-| `+0xA4` | `+0xA8` | `17 B` | `TRANSPORT_LAYER_FILTER m_TransportFilter` | `0x140001549: cmp dword ptr [rcx+rbx+0xA8], 1` — ports at `+0xAC..+0xB3`, `m_TCPFlags` at `+0xB4` |
+| Offset (Entry / Table) | Size | Field | Disassembly Reference |
+|:---:|:---:|---|---|
+| `+0x00` / `+0x04` | `8B` | `uint64_t m_Adapter` | `0x14000123C: mov rax, [rdx+rbx+4]` — `0` matches all adapters |
+| `+0x08` / `+0x0C` | `4B` | `DWORD m_dwDirectionFlags` | `0x14000124F: mov eax, [rdx+rbx+0xC]` — tested against `m_dwDeviceFlags` |
+| `+0x0C` / `+0x10` | `4B` | `DWORD m_FilterAction` | `0x140001618: mov r14d, [rcx+rbx+0x10]` — `1` PASS, `2` DROP, `3` REDIRECT, `4` PASS_RDR |
+| `+0x10` / `+0x14` | `4B` | `DWORD m_ValidFields` | `0x14000125C: mov r8d, [rdx+rbx+0x14]` — `1` L2, `2` L3, `4` L4 |
+| `+0x14` / `+0x18` | `4B` | `DWORD m_LastReset` | `0x140001CD2: mov [r8+rcx+0x18], esi` — initialized on table load |
+| `+0x18` / `+0x1C` | `32B` | `m_PacketsIn`, `m_BytesIn`<br>`m_PacketsOut`, `m_BytesOut` | Zeroed at `0x140001CDE..0x140001D02`; incremented at `0x140001637..0x1400016FA` |
+| `+0x38` / `+0x3C` | `24B` | `DATA_LINK_LAYER_FILTER`<br>`m_DataLinkFilter` | `0x140001267: cmp dword ptr [rdx+rbx+0x3C], 1` — Ethernet MACs and EtherType |
+| `+0x50` / `+0x54` | `84B` | `NETWORK_LAYER_FILTER`<br>`m_NetworkFilter` | `0x1400012F1: mov edx, [rcx+rbx+0x54]` — IPv4 32 B / IPv6 80 B with 3 B trailing padding |
+| `+0xA4` / `+0xA8` | `17B` | `TRANSPORT_LAYER_FILTER`<br>`m_TransportFilter` | `0x140001549: cmp dword ptr [rcx+rbx+0xA8], 1` — ports at `+0xAC..+0xB3`, `m_TCPFlags` at `+0xB4` |
 
 - **Kernel-Mode Enforcement in Both `MODE_LISTEN` and `MODE_TUNNEL`:** Disassembly of the TX filter wrapper `sub_140002E90` at `0x140002ECE: test cl, 5` — testing `MSTCP_FLAG_SENT_TUNNEL | MSTCP_FLAG_SENT_LISTEN` — and the RX filter wrapper `sub_140002DC3` at `0x140002E05: test cl, 0xA` — testing `MSTCP_FLAG_RECV_TUNNEL | MSTCP_FLAG_RECV_LISTEN` — proves that `wsddntf.sys` invokes `sub_140001150` in both `MODE_TUNNEL` `0x03` and `MODE_LISTEN` `0x0C`:
   - `FILTER_ACTION_DROP` `2` drops the `NET_BUFFER_LIST` directly in the kernel at `DISPATCH_LEVEL` in both modes without queuing to user space.
