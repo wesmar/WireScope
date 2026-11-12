@@ -1,0 +1,22 @@
+# Build output
+bin/
+obj/
+x64/
+.vs/
+*.user
+*.aps
+
+# Captures and personal notes stay local
+*.pcap
+od_marka.txt
+sonnet.txt
+
+# The WinpkFilter driver (wsddntf) is third-party software: install it from its vendor
+driver/
+rsc/
+priv/
+
+# Release scripts (a copy is kept outside the repository)
+github.sh
+release-now.md
+release/

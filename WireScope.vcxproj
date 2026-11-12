@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- WireScope - Modern C++23 Network Packet Monitor & Sniffer -->
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>18.0</VCProjectVersion>
+    <ProjectGuid>{4D2C97F1-3B10-4A8E-921C-C87E3A9D1254}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>WireScope</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v145</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Release'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <PropertyGroup>
+    <OutDir>$(ProjectDir)bin\</OutDir>
+    <IntDir>$(ProjectDir)obj\$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>WireScope</TargetName>
+    <LinkIncremental>false</LinkIncremental>
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <TargetName>WireScope_debug</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <ControlFlowGuard>Guard</ControlFlowGuard>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>$(ProjectDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NOMINMAX;WIN32_LEAN_AND_MEAN;UNICODE;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>/utf-8 /Brepro /experimental:deterministic /pathmap:$(ProjectDir)=. /Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>$(ProjectDir)src\resources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <CETCompat>true</CETCompat>
+      <AdditionalOptions>/Brepro /PDBALTPATH:%_PDB% %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>comctl32.lib;dwmapi.lib;iphlpapi.lib;ws2_32.lib;ole32.lib;shell32.lib;user32.lib;gdi32.lib;advapi32.lib;comdlg32.lib;d2d1.lib;dwrite.lib;uxtheme.lib;ntdll.lib;wintrust.lib;crypt32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\app\Cli.cpp" />
+    <ClCompile Include="src\app\CliDriver.cpp" />
+    <ClCompile Include="src\app\CliOptions.cpp" />
+    <ClCompile Include="src\app\CliProcesses.cpp" />
+    <ClCompile Include="src\app\CliSession.cpp" />
+    <ClCompile Include="src\app\CliTools.cpp" />
+    <ClCompile Include="src\app\Console.cpp" />
+    <ClCompile Include="src\app\main.cpp" />
+    <ClCompile Include="src\core\DriverBridge.cpp" />
+    <ClCompile Include="src\core\DriverPackage.cpp" />
+    <ClCompile Include="src\core\DriverSetup.cpp" />
+    <ClCompile Include="src\core\FrameView.cpp" />
+    <ClCompile Include="src\core\Impairment.cpp" />
+    <ClCompile Include="src\core\PacketEngine.cpp" />
+    <ClCompile Include="src\core\PacketParser.cpp" />
+    <ClCompile Include="src\core\PcapWriter.cpp" />
+    <ClCompile Include="src\core\ProcessMapper.cpp" />
+    <ClCompile Include="src\core\ProcessTrust.cpp" />
+    <ClCompile Include="src\core\RuleCompiler.cpp" />
+    <ClCompile Include="src\core\Rules.cpp" />
+    <ClCompile Include="src\core\Safety.cpp" />
+    <ClCompile Include="src\core\TrafficController.cpp" />
+    <ClCompile Include="src\gui\Dialogs.cpp" />
+    <ClCompile Include="src\gui\MainWindow.cpp" />
+    <ClCompile Include="src\gui\MainWindowCommands.cpp" />
+    <ClCompile Include="src\gui\MainWindowDriver.cpp" />
+    <ClCompile Include="src\gui\MainWindowLayout.cpp" />
+    <ClCompile Include="src\gui\MainWindowMenus.cpp" />
+    <ClCompile Include="src\gui\MainWindowProcesses.cpp" />
+    <ClCompile Include="src\gui\MainWindowState.cpp" />
+    <ClCompile Include="src\gui\Menus.cpp" />
+    <ClCompile Include="src\gui\PacketDetails.cpp" />
+    <ClCompile Include="src\gui\PacketList.cpp" />
+    <ClCompile Include="src\gui\PacketListPaint.cpp" />
+    <ClCompile Include="src\gui\ProcessList.cpp" />
+    <ClCompile Include="src\gui\RuleList.cpp" />
+    <ClCompile Include="src\gui\Theme.cpp" />
+    <ClCompile Include="src\gui\Widgets.cpp" />
+    <ClCompile Include="src\support\Common.cpp" />
+    <ClCompile Include="src\support\Language.cpp" />
+    <ClCompile Include="src\support\Settings.cpp" />
+    <ClCompile Include="src\support\Text.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\app\Cli.h" />
+    <ClInclude Include="src\app\CliDetail.h" />
+    <ClInclude Include="src\app\Console.h" />
+    <ClInclude Include="src\core\DriverBridge.h" />
+    <ClInclude Include="src\core\DriverPackage.h" />
+    <ClInclude Include="src\core\DriverSetup.h" />
+    <ClInclude Include="src\core\FilterAbi.h" />
+    <ClInclude Include="src\core\FrameView.h" />
+    <ClInclude Include="src\core\Impairment.h" />
+    <ClInclude Include="src\core\PacketEngine.h" />
+    <ClInclude Include="src\core\PacketParser.h" />
+    <ClInclude Include="src\core\PacketTypes.h" />
+    <ClInclude Include="src\core\PcapWriter.h" />
+    <ClInclude Include="src\core\ProcessMapper.h" />
+    <ClInclude Include="src\core\ProcessTraffic.h" />
+    <ClInclude Include="src\core\ProcessTrust.h" />
+    <ClInclude Include="src\core\Rules.h" />
+    <ClInclude Include="src\core\RulesDetail.h" />
+    <ClInclude Include="src\core\Safety.h" />
+    <ClInclude Include="src\core\TrafficController.h" />
+    <ClInclude Include="src\gui\Dialogs.h" />
+    <ClInclude Include="src\gui\MainWindow.h" />
+    <ClInclude Include="src\gui\MainWindowDetail.h" />
+    <ClInclude Include="src\gui\Menus.h" />
+    <ClInclude Include="src\gui\PacketDetails.h" />
+    <ClInclude Include="src\gui\PacketList.h" />
+    <ClInclude Include="src\gui\ProcessList.h" />
+    <ClInclude Include="src\gui\RuleList.h" />
+    <ClInclude Include="src\gui\Theme.h" />
+    <ClInclude Include="src\gui\Widgets.h" />
+    <ClInclude Include="src\support\Common.h" />
+    <ClInclude Include="src\support\Handle.h" />
+    <ClInclude Include="src\support\Language.h" />
+    <ClInclude Include="src\support\Settings.h" />
+    <ClInclude Include="src\support\Text.h" />
+    <ClInclude Include="src\resources\resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="src\resources\app.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\resources\app.manifest" />
+    <None Include="src\resources\lang\en.rc" />
+    <Image Include="src\resources\WireScope.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Language files are not compiled in: they are copied next to the executable (bin\language). -->
+    <CopyFileToFolders Include="src\resources\language\ar.lng"><DestinationFolders>$(OutDir)language</DestinationFolders></CopyFileToFolders>
+    <CopyFileToFolders Include="src\resources\language\cs.lng"><DestinationFolders>$(OutDir)language</DestinationFolders></CopyFileToFolders>
+    <CopyFileToFolders Include="src\resources\language\de.lng"><DestinationFolders>$(OutDir)language</DestinationFolders></CopyFileToFolders>
+    <CopyFileToFolders Include="src\resources\language\es.lng"><DestinationFolders>$(OutDir)language</DestinationFolders></CopyFileToFolders>
+    <CopyFileToFolders Include="src\resources\language\fa.lng"><DestinationFolders>$(OutDir)language</DestinationFolders></CopyFileToFolders>
+    <CopyFileToFolders Include="src\resources\language\fr.lng"><DestinationFolders>$(OutDir)language</DestinationFolders></CopyFileToFolders>
+    <CopyFileToFolders Include="src\resources\language\hi.lng"><DestinationFolders>$(OutDir)language</DestinationFolders></CopyFileToFolders>
+    <CopyFileToFolders Include="src\resources\language\id.lng"><DestinationFolders>$(OutDir)language</DestinationFolders></CopyFileToFolders>
+    <CopyFileToFolders Include="src\resources\language\it.lng"><DestinationFolders>$(OutDir)language</DestinationFolders></CopyFileToFolders>
+    <CopyFileToFolders Include="src\resources\language\ja.lng"><DestinationFolders>$(OutDir)language</DestinationFolders></CopyFileToFolders>
+    <CopyFileToFolders Include="src\resources\language\ko.lng"><DestinationFolders>$(OutDir)language</DestinationFolders></CopyFileToFolders>
+    <CopyFileToFolders Include="src\resources\language\nl.lng"><DestinationFolders>$(OutDir)language</DestinationFolders></CopyFileToFolders>
+    <CopyFileToFolders Include="src\resources\language\pl.lng"><DestinationFolders>$(OutDir)language</DestinationFolders></CopyFileToFolders>
+    <CopyFileToFolders Include="src\resources\language\pt.lng"><DestinationFolders>$(OutDir)language</DestinationFolders></CopyFileToFolders>
+    <CopyFileToFolders Include="src\resources\language\ru.lng"><DestinationFolders>$(OutDir)language</DestinationFolders></CopyFileToFolders>
+    <CopyFileToFolders Include="src\resources\language\tr.lng"><DestinationFolders>$(OutDir)language</DestinationFolders></CopyFileToFolders>
+    <CopyFileToFolders Include="src\resources\language\uk.lng"><DestinationFolders>$(OutDir)language</DestinationFolders></CopyFileToFolders>
+    <CopyFileToFolders Include="src\resources\language\vi.lng"><DestinationFolders>$(OutDir)language</DestinationFolders></CopyFileToFolders>
+    <CopyFileToFolders Include="src\resources\language\zh-cn.lng"><DestinationFolders>$(OutDir)language</DestinationFolders></CopyFileToFolders>
+    <CopyFileToFolders Include="src\resources\language\zh-tw.lng"><DestinationFolders>$(OutDir)language</DestinationFolders></CopyFileToFolders>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+</Project>

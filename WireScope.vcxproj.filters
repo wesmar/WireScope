@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="app">
+      <UniqueIdentifier>{6f987625-7821-4f11-9fa5-827e8a9d1234}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core">
+      <UniqueIdentifier>{5a876123-1245-4899-b1d2-7c8e9f0a2345}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gui">
+      <UniqueIdentifier>{3b765412-8901-4678-a2c3-6b7d8e9f3456}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="support">
+      <UniqueIdentifier>{2c654301-7890-4567-91b2-5a6c7d8e4567}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resources">
+      <UniqueIdentifier>{1d543290-6789-4456-80a1-495b6c7d5678}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resources\languages">
+      <UniqueIdentifier>{7e654321-89ab-4cde-0123-456789abcdef}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\app\Cli.cpp"><Filter>app</Filter></ClCompile>
+    <ClCompile Include="src\app\CliDriver.cpp"><Filter>app</Filter></ClCompile>
+    <ClCompile Include="src\app\CliOptions.cpp"><Filter>app</Filter></ClCompile>
+    <ClCompile Include="src\app\CliProcesses.cpp"><Filter>app</Filter></ClCompile>
+    <ClCompile Include="src\app\CliSession.cpp"><Filter>app</Filter></ClCompile>
+    <ClCompile Include="src\app\CliTools.cpp"><Filter>app</Filter></ClCompile>
+    <ClCompile Include="src\app\Console.cpp"><Filter>app</Filter></ClCompile>
+    <ClCompile Include="src\app\main.cpp"><Filter>app</Filter></ClCompile>
+    <ClCompile Include="src\core\DriverBridge.cpp"><Filter>core</Filter></ClCompile>
+    <ClCompile Include="src\core\DriverPackage.cpp"><Filter>core</Filter></ClCompile>
+    <ClCompile Include="src\core\DriverSetup.cpp"><Filter>core</Filter></ClCompile>
+    <ClCompile Include="src\core\FrameView.cpp"><Filter>core</Filter></ClCompile>
+    <ClCompile Include="src\core\Impairment.cpp"><Filter>core</Filter></ClCompile>
+    <ClCompile Include="src\core\PacketEngine.cpp"><Filter>core</Filter></ClCompile>
+    <ClCompile Include="src\core\PacketParser.cpp"><Filter>core</Filter></ClCompile>
+    <ClCompile Include="src\core\PcapWriter.cpp"><Filter>core</Filter></ClCompile>
+    <ClCompile Include="src\core\ProcessMapper.cpp"><Filter>core</Filter></ClCompile>
+    <ClCompile Include="src\core\ProcessTrust.cpp"><Filter>core</Filter></ClCompile>
+    <ClCompile Include="src\core\RuleCompiler.cpp"><Filter>core</Filter></ClCompile>
+    <ClCompile Include="src\core\Rules.cpp"><Filter>core</Filter></ClCompile>
+    <ClCompile Include="src\core\Safety.cpp"><Filter>core</Filter></ClCompile>
+    <ClCompile Include="src\core\TrafficController.cpp"><Filter>core</Filter></ClCompile>
+    <ClCompile Include="src\gui\Dialogs.cpp"><Filter>gui</Filter></ClCompile>
+    <ClCompile Include="src\gui\MainWindow.cpp"><Filter>gui</Filter></ClCompile>
+    <ClCompile Include="src\gui\MainWindowCommands.cpp"><Filter>gui</Filter></ClCompile>
+    <ClCompile Include="src\gui\MainWindowDriver.cpp"><Filter>gui</Filter></ClCompile>
+    <ClCompile Include="src\gui\MainWindowLayout.cpp"><Filter>gui</Filter></ClCompile>
+    <ClCompile Include="src\gui\MainWindowMenus.cpp"><Filter>gui</Filter></ClCompile>
+    <ClCompile Include="src\gui\MainWindowProcesses.cpp"><Filter>gui</Filter></ClCompile>
+    <ClCompile Include="src\gui\MainWindowState.cpp"><Filter>gui</Filter></ClCompile>
+    <ClCompile Include="src\gui\Menus.cpp"><Filter>gui</Filter></ClCompile>
+    <ClCompile Include="src\gui\PacketDetails.cpp"><Filter>gui</Filter></ClCompile>
+    <ClCompile Include="src\gui\PacketList.cpp"><Filter>gui</Filter></ClCompile>
+    <ClCompile Include="src\gui\PacketListPaint.cpp"><Filter>gui</Filter></ClCompile>
+    <ClCompile Include="src\gui\ProcessList.cpp"><Filter>gui</Filter></ClCompile>
+    <ClCompile Include="src\gui\RuleList.cpp"><Filter>gui</Filter></ClCompile>
+    <ClCompile Include="src\gui\Theme.cpp"><Filter>gui</Filter></ClCompile>
+    <ClCompile Include="src\gui\Widgets.cpp"><Filter>gui</Filter></ClCompile>
+    <ClCompile Include="src\support\Common.cpp"><Filter>support</Filter></ClCompile>
+    <ClCompile Include="src\support\Language.cpp"><Filter>support</Filter></ClCompile>
+    <ClCompile Include="src\support\Settings.cpp"><Filter>support</Filter></ClCompile>
+    <ClCompile Include="src\support\Text.cpp"><Filter>support</Filter></ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\app\Cli.h"><Filter>app</Filter></ClInclude>
+    <ClInclude Include="src\app\CliDetail.h"><Filter>app</Filter></ClInclude>
+    <ClInclude Include="src\app\Console.h"><Filter>app</Filter></ClInclude>
+    <ClInclude Include="src\core\DriverBridge.h"><Filter>core</Filter></ClInclude>
+    <ClInclude Include="src\core\DriverPackage.h"><Filter>core</Filter></ClInclude>
+    <ClInclude Include="src\core\DriverSetup.h"><Filter>core</Filter></ClInclude>
+    <ClInclude Include="src\core\FilterAbi.h"><Filter>core</Filter></ClInclude>
+    <ClInclude Include="src\core\FrameView.h"><Filter>core</Filter></ClInclude>
+    <ClInclude Include="src\core\Impairment.h"><Filter>core</Filter></ClInclude>
+    <ClInclude Include="src\core\PacketEngine.h"><Filter>core</Filter></ClInclude>
+    <ClInclude Include="src\core\PacketParser.h"><Filter>core</Filter></ClInclude>
+    <ClInclude Include="src\core\PacketTypes.h"><Filter>core</Filter></ClInclude>
+    <ClInclude Include="src\core\PcapWriter.h"><Filter>core</Filter></ClInclude>
+    <ClInclude Include="src\core\ProcessMapper.h"><Filter>core</Filter></ClInclude>
+    <ClInclude Include="src\core\ProcessTraffic.h"><Filter>core</Filter></ClInclude>
+    <ClInclude Include="src\core\ProcessTrust.h"><Filter>core</Filter></ClInclude>
+    <ClInclude Include="src\core\Rules.h"><Filter>core</Filter></ClInclude>
+    <ClInclude Include="src\core\RulesDetail.h"><Filter>core</Filter></ClInclude>
+    <ClInclude Include="src\core\Safety.h"><Filter>core</Filter></ClInclude>
+    <ClInclude Include="src\core\TrafficController.h"><Filter>core</Filter></ClInclude>
+    <ClInclude Include="src\gui\Dialogs.h"><Filter>gui</Filter></ClInclude>
+    <ClInclude Include="src\gui\MainWindow.h"><Filter>gui</Filter></ClInclude>
+    <ClInclude Include="src\gui\MainWindowDetail.h"><Filter>gui</Filter></ClInclude>
+    <ClInclude Include="src\gui\Menus.h"><Filter>gui</Filter></ClInclude>
+    <ClInclude Include="src\gui\PacketDetails.h"><Filter>gui</Filter></ClInclude>
+    <ClInclude Include="src\gui\PacketList.h"><Filter>gui</Filter></ClInclude>
+    <ClInclude Include="src\gui\ProcessList.h"><Filter>gui</Filter></ClInclude>
+    <ClInclude Include="src\gui\RuleList.h"><Filter>gui</Filter></ClInclude>
+    <ClInclude Include="src\gui\Theme.h"><Filter>gui</Filter></ClInclude>
+    <ClInclude Include="src\gui\Widgets.h"><Filter>gui</Filter></ClInclude>
+    <ClInclude Include="src\support\Common.h"><Filter>support</Filter></ClInclude>
+    <ClInclude Include="src\support\Handle.h"><Filter>support</Filter></ClInclude>
+    <ClInclude Include="src\support\Language.h"><Filter>support</Filter></ClInclude>
+    <ClInclude Include="src\support\Settings.h"><Filter>support</Filter></ClInclude>
+    <ClInclude Include="src\support\Text.h"><Filter>support</Filter></ClInclude>
+    <ClInclude Include="src\resources\resource.h"><Filter>resources</Filter></ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="src\resources\app.rc"><Filter>resources</Filter></ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\resources\app.manifest"><Filter>resources</Filter></None>
+    <None Include="src\resources\lang\en.rc"><Filter>resources</Filter></None>
+    <Image Include="src\resources\WireScope.bmp"><Filter>resources</Filter></Image>
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="src\resources\language\ar.lng"><Filter>resources\languages</Filter></CopyFileToFolders>
+    <CopyFileToFolders Include="src\resources\language\cs.lng"><Filter>resources\languages</Filter></CopyFileToFolders>
+    <CopyFileToFolders Include="src\resources\language\de.lng"><Filter>resources\languages</Filter></CopyFileToFolders>
+    <CopyFileToFolders Include="src\resources\language\es.lng"><Filter>resources\languages</Filter></CopyFileToFolders>
+    <CopyFileToFolders Include="src\resources\language\fa.lng"><Filter>resources\languages</Filter></CopyFileToFolders>
+    <CopyFileToFolders Include="src\resources\language\fr.lng"><Filter>resources\languages</Filter></CopyFileToFolders>
+    <CopyFileToFolders Include="src\resources\language\hi.lng"><Filter>resources\languages</Filter></CopyFileToFolders>
+    <CopyFileToFolders Include="src\resources\language\id.lng"><Filter>resources\languages</Filter></CopyFileToFolders>
+    <CopyFileToFolders Include="src\resources\language\it.lng"><Filter>resources\languages</Filter></CopyFileToFolders>
+    <CopyFileToFolders Include="src\resources\language\ja.lng"><Filter>resources\languages</Filter></CopyFileToFolders>
+    <CopyFileToFolders Include="src\resources\language\ko.lng"><Filter>resources\languages</Filter></CopyFileToFolders>
+    <CopyFileToFolders Include="src\resources\language\nl.lng"><Filter>resources\languages</Filter></CopyFileToFolders>
+    <CopyFileToFolders Include="src\resources\language\pl.lng"><Filter>resources\languages</Filter></CopyFileToFolders>
+    <CopyFileToFolders Include="src\resources\language\pt.lng"><Filter>resources\languages</Filter></CopyFileToFolders>
+    <CopyFileToFolders Include="src\resources\language\ru.lng"><Filter>resources\languages</Filter></CopyFileToFolders>
+    <CopyFileToFolders Include="src\resources\language\tr.lng"><Filter>resources\languages</Filter></CopyFileToFolders>
+    <CopyFileToFolders Include="src\resources\language\uk.lng"><Filter>resources\languages</Filter></CopyFileToFolders>
+    <CopyFileToFolders Include="src\resources\language\vi.lng"><Filter>resources\languages</Filter></CopyFileToFolders>
+    <CopyFileToFolders Include="src\resources\language\zh-cn.lng"><Filter>resources\languages</Filter></CopyFileToFolders>
+    <CopyFileToFolders Include="src\resources\language\zh-tw.lng"><Filter>resources\languages</Filter></CopyFileToFolders>
+  </ItemGroup>
+</Project>
