@@ -6,7 +6,7 @@
 
 <br><br>
 
-![WireScope](images/wirescope.webp)
+![WireScope](images/WireScope.webp)
 
 [![Latest Release](https://img.shields.io/badge/Release-WireScope%202.0.0-0891b2.svg)](https://github.com/wesmar/WireScope/releases/tag/latest)
 [![Archive Password: github.com](https://img.shields.io/badge/Password-github.com-f59e0b.svg)](#-release-archive-and-integrity)
