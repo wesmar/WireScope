@@ -6,7 +6,7 @@
 
 <br><br>
 
-![WireScope](images/WireScope.webp)
+![WireScope](images/wirescope.webp)
 
 [![Latest Release](https://img.shields.io/badge/Release-WireScope%202.0.0-0891b2.svg)](https://github.com/wesmar/WireScope/releases/tag/latest)
 [![Archive Password: github.com](https://img.shields.io/badge/Password-github.com-f59e0b.svg)](#-release-archive-and-integrity)
@@ -211,13 +211,13 @@ Mode transitions execute synchronously on the `PacketEngine` worker thread betwe
 
 ## Steganographic Driver Packaging and Deployment
 
-To keep `WireScope.exe` a self-contained single-file executable without bundling external `.sys`, `.cat`, or `.inf` files on disk, the complete NDIS driver package is embedded inside the PE resource section as a 24-bit RGB bitmap at `src/resources/WireScope.bmp` with resource identifier `IDR_DRIVER_IMAGE` (`102`).
+To keep `WireScope.exe` a self-contained single-file executable without bundling external `.sys`, `.cat`, or `.inf` files on disk, the complete NDIS driver package is embedded as `IDR_DRIVER_IMAGE` (`102`) using the native `BITMAP` resource type. The source file is a complete 24-bit RGB bitmap; `rc.exe` stores its 35,320-byte DIB form after removing the 14-byte `BITMAPFILEHEADER`.
 
 <div align="center">
 
 ![Steganographic Carrier](src/resources/WireScope.bmp)
 
-<sub><em>src/resources/WireScope.bmp — 112 × 105 px 24-bit RGB bitmap carrying the LZX-compressed, XOR-masked NDIS driver package, 35,334 bytes</em></sub>
+<sub><em>src/resources/WireScope.bmp — 112 × 105 px, 35,334-byte file / 35,320-byte RT_BITMAP DIB carrying the LZX-compressed, XOR-masked NDIS driver package</em></sub>
 
 </div>
 
@@ -227,7 +227,7 @@ flowchart TD
         RAW["wsddntf.inf: 2,794 B<br/>wsddntf.cat: 12,017 B<br/>wsddntf.sys: 55,880 B"]
         CAB["makecab.exe LZX:21<br/>Slots 1, 2, 3 — 35,120 B"]
         MASK["XOR Mask MSCF Header<br/>0xA5, 0x5A, 0xF0, 0x0F"]
-        BMP["24-bit RGB Bitmap<br/>WireScope.bmp — 35,334 B"]
+        BMP["24-bit RGB Bitmap<br/>35,334-B file / 35,320-B RT_BITMAP DIB"]
         RAW --> CAB --> MASK --> BMP
     end
 
@@ -249,7 +249,7 @@ The build script `priv/build_bmp.ps1` constructs the carrier image deterministic
 1. **Neutral Slot Naming:** The three package files totaling 70,691 bytes are staged with fixed timestamps `2030-01-01 00:00:00` and assigned neutral cabinet entry names `1` for `wsddntf.inf`, `2` for `wsddntf.cat`, and `3` for `wsddntf.sys`, ensuring that no `.sys`, `.cat`, `.inf`, or `wsddntf` strings appear in the cabinet directory header.
 2. **Solid LZX:21 Compression:** `makecab.exe` compresses all three files into a single solid LZX folder with a 2 MB window, `CompressionMemory=21`, reducing 70,691 bytes to 35,120 bytes — 49.51% of the original size.
 3. **Archival Signature Masking:** Bytes `0..3` of the cabinet stream — `MSCF` / `0x4D, 0x53, 0x43, 0x46` — are XOR-masked with `0xA5, 0x5A, 0xF0, 0x0F` to produce `0xE8, 0x09, 0xB3, 0x49`, removing the cabinet magic signature from static inspection.
-4. **24-Bit Bitmap Encapsulation:** A standard 14-byte `BITMAPFILEHEADER` and 40-byte `BITMAPINFOHEADER` for a `112 × 105` pixel, 24 bpp `BI_RGB` image are prepended. The exact cabinet payload length of `35,120` bytes is stored in the 32-bit field formed by `bfReserved1` and `bfReserved2` at file offset `0x06`, while `bfOffBits` at offset `0x0A` points to pixel offset `54`.
+4. **24-Bit Bitmap Encapsulation:** The source file contains the standard 14-byte `BITMAPFILEHEADER` and a 40-byte `BITMAPINFOHEADER` for a `112 × 105` pixel, 24 bpp `BI_RGB` image. The exact cabinet length of `35,120` bytes is stored in `bfReserved1` / `bfReserved2` in the file form and in the DIB's `biClrImportant` field so it survives `rc.exe`. The embedded `RT_BITMAP` DIB is 35,320 bytes and its pixel data begins at DIB offset `40`.
 
 ### In-Memory FDI Decompression and RAII Staging
 

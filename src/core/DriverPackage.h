@@ -1,5 +1,5 @@
 // WireScope - Extracts the embedded driver package (wsddntf.inf, wsddntf.cat, wsddntf.sys) from the
-// 24-bit bitmap resource WireScope.bmp (IDR_DRIVER_IMAGE). The bitmap pixel array holds an LZX:21
+// 24-bit RT_BITMAP resource WireScope.bmp (IDR_DRIVER_IMAGE). The DIB pixel array holds an LZX:21
 // cabinet with its MSCF magic masked; cabinet.dll (FDICopy) unpacks it in memory.
 #pragma once
 #include <Windows.h>

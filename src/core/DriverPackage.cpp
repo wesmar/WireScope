@@ -233,23 +233,40 @@ struct BmpCabinetSlice {
 };
 
 std::optional<BmpCabinetSlice> LocateEmbeddedCabinet() noexcept {
-    const HRSRC resource = FindResourceW(nullptr, MAKEINTRESOURCEW(IDR_DRIVER_IMAGE), RT_RCDATA);
+    const HRSRC resource = FindResourceW(nullptr, MAKEINTRESOURCEW(IDR_DRIVER_IMAGE), RT_BITMAP);
     if (!resource) return std::nullopt;
 
     const DWORD resourceSize = SizeofResource(nullptr, resource);
-    if (resourceSize < 58) return std::nullopt;
+    if (resourceSize < 40) return std::nullopt;
 
     const HGLOBAL loaded = LoadResource(nullptr, resource);
     if (!loaded) return std::nullopt;
 
     const auto* raw = static_cast<const BYTE*>(LockResource(loaded));
-    if (!raw || raw[0] != 0x42 || raw[1] != 0x4D) return std::nullopt;  // 'BM'
+    if (!raw) return std::nullopt;
 
-    DWORD cabSize = 0, offBits = 0;
-    std::memcpy(&cabSize, raw + 6, sizeof(DWORD));   // bfReserved1 + bfReserved2
-    std::memcpy(&offBits, raw + 10, sizeof(DWORD));  // bfOffBits
+    DWORD cabSize = 0;
+    size_t offBits = 0;
+    if (resourceSize >= 54 && raw[0] == 0x42 && raw[1] == 0x4D) {
+        DWORD fileOffBits = 0;
+        std::memcpy(&cabSize, raw + 6, sizeof(DWORD));   // bfReserved1 + bfReserved2
+        std::memcpy(&fileOffBits, raw + 10, sizeof(DWORD));  // bfOffBits
+        offBits = fileOffBits;
+    } else {
+        DWORD dibSize = 0, colorsUsed = 0;
+        WORD bitsPerPixel = 0;
+        std::memcpy(&dibSize, raw, sizeof(DWORD));
+        std::memcpy(&bitsPerPixel, raw + 14, sizeof(WORD));
+        std::memcpy(&cabSize, raw + 36, sizeof(DWORD));  // biClrImportant
+        std::memcpy(&colorsUsed, raw + 32, sizeof(DWORD));
+        if (dibSize < 40 || dibSize > resourceSize || bitsPerPixel != 24 ||
+            colorsUsed > (resourceSize - dibSize) / 4) {
+            return std::nullopt;
+        }
+        offBits = static_cast<size_t>(dibSize) + static_cast<size_t>(colorsUsed) * 4;
+    }
 
-    if (offBits < 54 || cabSize < 4 || offBits > resourceSize || cabSize > resourceSize - offBits) {
+    if (cabSize < 4 || offBits > resourceSize || cabSize > resourceSize - offBits) {
         return std::nullopt;
     }
     if (std::memcmp(raw + offBits, kMaskedMagic, 4) != 0) return std::nullopt;
