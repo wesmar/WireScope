@@ -8,7 +8,7 @@
 
 ![WireScope](images/wirescope.webp)
 
-[![Latest Release](https://img.shields.io/badge/Release-WireScope%202.0.1-0891b2.svg)](https://github.com/wesmar/WireScope/releases/tag/latest)
+[![Latest Release](https://img.shields.io/badge/Release-WireScope%202.0.0-0891b2.svg)](https://github.com/wesmar/WireScope/releases/tag/latest)
 [![Archive Password: github.com](https://img.shields.io/badge/Password-github.com-f59e0b.svg)](#-release-archive-and-integrity)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE.md)
 [![Platform](https://img.shields.io/badge/Platform-Windows%2010%20%7C%2011%20x64-2563eb.svg)]()

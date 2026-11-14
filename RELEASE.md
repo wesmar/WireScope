@@ -1,10 +1,10 @@
-# WireScope 2.0.1 — Modern C++23 Network Analyzer, Firewall & Impairment Simulator
+# WireScope 2.0.0 — Modern C++23 Network Analyzer, Firewall & Impairment Simulator
 
 WireScope is a lightweight, high-performance network analyzer, kernel-level firewall, and real-time network impairment simulator for Windows, built entirely in modern C++23.
 
 Powered by the WinpkFilter NDIS intermediate filter driver `wsddntf.sys`, WireScope combines Layer 2 packet inspection, per-process traffic attribution, kernel static filter enforcement, token-bucket bandwidth shaping, and delay/loss simulation on one unified data plane.
 
-## What's New in 2.0.1 — 14.11.2026
+## Carrier Update — 14.11.2026
 
 - The embedded `wsddntf` driver package is now stored as a native Windows `BITMAP` resource (`RT_BITMAP 102`) instead of opaque `RCDATA`.
 - `WireScope.bmp` remains a complete 24-bit image, while `rc.exe` stores its 35,320-byte DIB form in the executable.
