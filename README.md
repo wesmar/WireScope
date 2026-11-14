@@ -214,10 +214,20 @@ Mode transitions execute synchronously on the `PacketEngine` worker thread betwe
 To keep `WireScope.exe` a self-contained single-file executable without bundling external `.sys`, `.cat`, or `.inf` files on disk, the complete NDIS driver package is embedded as `IDR_DRIVER_IMAGE` (`102`) using the native `BITMAP` resource type. The source file is a complete 24-bit RGB bitmap; `rc.exe` stores its 35,320-byte DIB form after removing the 14-byte `BITMAPFILEHEADER`.
 
 <div align="center">
+<table>
+  <tr>
+    <td align="center" valign="middle">
+      <img src="src/resources/WireScope.bmp" alt="Steganographic Carrier (WireScope.bmp)" height="220" /><br>
+      <sub><em>Raw 24-bit bitmap carrier (<code>src/resources/WireScope.bmp</code>, 112 × 105 px)</em></sub>
+    </td>
+    <td align="center" valign="middle">
+      <img src="images/RH.webp" alt="Resource Hacker — WireScope.exe BITMAP 102" height="220" /><br>
+      <sub><em>Embedded <code>BITMAP 102</code> in <code>WireScope.exe</code> (Resource Hacker)</em></sub>
+    </td>
+  </tr>
+</table>
 
-![Steganographic Carrier](src/resources/WireScope.bmp)
-
-<sub><em>src/resources/WireScope.bmp — 112 × 105 px, 35,334-byte file / 35,320-byte RT_BITMAP DIB carrying the LZX-compressed, XOR-masked NDIS driver package</em></sub>
+<sub><em>35,334-byte source file / 35,320-byte <code>RT_BITMAP</code> DIB carrying the LZX-compressed, XOR-masked NDIS driver package</em></sub>
 
 </div>
 
