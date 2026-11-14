@@ -404,5 +404,7 @@
 #define IDS_DRV_STATE_HOLDING          10378
 #define IDS_DLG_DRV_START              10379
 #define IDS_DLG_DRV_DISABLE            10380
+#define IDS_DRV_PROMPT_INSTALL         10381
+#define IDS_DRV_PROMPT_START           10382
 
 #endif

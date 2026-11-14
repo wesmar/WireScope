@@ -416,3 +416,5 @@
 10378=Parado, mas ainda anexado: seus adaptadores não transportam tráfego
 10379=Iniciar o driver de rede?
 10380=Desativar o driver de rede?
+10381=O driver de rede não está instalado. Clique em {} acima para instalá-lo.
+10382=O driver de rede está parado. Clique em {} acima para iniciá-lo.

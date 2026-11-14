@@ -416,3 +416,5 @@
 10378=Angehalten, während noch angehängt: Seine Adapter übertragen keinen Datenverkehr
 10379=Netzwerktreiber starten?
 10380=Netzwerktreiber deaktivieren?
+10381=Der Netzwerktreiber ist nicht installiert. Klicken Sie oben auf {}, um ihn zu installieren.
+10382=Der Netzwerktreiber ist angehalten. Klicken Sie oben auf {}, um ihn zu starten.

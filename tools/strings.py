@@ -423,6 +423,8 @@ T('IDS_CM_SELECT_ALL', 'Select all', 'Zaznacz wszystko')
 T('IDS_DRV_STATE_HOLDING', 'Stopped while still attached: its adapters carry no traffic', 'Zatrzymany, ale wciąż podpięty: jego karty nie przenoszą ruchu')
 T('IDS_DLG_DRV_START', 'Start the network driver?', 'Uruchomić sterownik sieci?')
 T('IDS_DLG_DRV_DISABLE', 'Disable the network driver?', 'Wyłączyć sterownik sieci?')
+T('IDS_DRV_PROMPT_INSTALL', 'Network driver is not installed. Click {} above to install it.', 'Sterownik sieci nie jest zainstalowany. Kliknij {} powyżej, aby go zainstalować.')
+T('IDS_DRV_PROMPT_START', 'Network driver is not running. Click {} above to start it.', 'Sterownik sieci jest zatrzymany. Kliknij {} powyżej, aby go uruchomić.')
 
 # ---------------------------------------------------------------------------
 def rc_escape(s):

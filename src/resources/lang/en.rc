@@ -401,4 +401,6 @@ BEGIN
     IDS_DRV_STATE_HOLDING          "Stopped while still attached: its adapters carry no traffic"
     IDS_DLG_DRV_START              "Start the network driver?"
     IDS_DLG_DRV_DISABLE            "Disable the network driver?"
+    IDS_DRV_PROMPT_INSTALL         "Network driver is not installed. Click {} above to install it."
+    IDS_DRV_PROMPT_START           "Network driver is not running. Click {} above to start it."
 END

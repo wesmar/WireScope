@@ -628,7 +628,7 @@ pwsh -File .\build.ps1 -Clean
 
 | File | Format | Contents | Size | SHA-256 Digest |
 |---|---|---|---|---|
-| `WireScope.7z` | 7-Zip AES-256 | `WireScope.exe`, `language/*.lng` (20 languages) | 623,072 bytes (609 KiB) | `af92815726b2ec4482d0c2a2316ec90400a8076934130f4b0c0e5892e69d36fd` |
+| `WireScope.7z` | 7-Zip AES-256 | `WireScope.exe`, `language/*.lng` (20 languages) | 622,720 bytes (608 KiB) | `4c8e83e98316b3985529b49cdf99ce7c7464e422815f51a3415f195ac52eb878` |
 
 ---
 

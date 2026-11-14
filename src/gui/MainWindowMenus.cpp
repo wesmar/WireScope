@@ -190,6 +190,7 @@ void MainWindow::ApplyLanguage() {
     SendMessageW(m_filterEdit, EM_SETCUEBANNER, TRUE, reinterpret_cast<LPARAM>(Text::Get(IDS_FILTER_CUE).c_str()));
     SendMessageW(m_matchEdit, EM_SETCUEBANNER, TRUE, reinterpret_cast<LPARAM>(Text::Get(IDS_MATCH_CUE).c_str()));
     m_list.SetPlaceholder(m_driverOk ? Text::Get(m_filter.empty() ? IDS_LIST_EMPTY : IDS_LIST_NO_MATCH) : m_driverText);
+    if (!m_driverOk) UpdateDriverPrompt(true);
     m_procList.SetPlaceholder(Text::Get(IDS_PROC_EMPTY));
     const PacketRef selected = m_details.Packet();
     m_details.SetPacket(nullptr, 0);

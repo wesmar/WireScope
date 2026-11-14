@@ -85,7 +85,7 @@ void MainWindow::Layout() {
     // Capture: commands, filter, packet list, splitter, details.
     {
         const float x = row(L, {{CmdStart, 130}, {CmdStop, 110}, {CmdClear, 110}, {CmdSave, 130}});
-        Place(item(CmdElevate), {L, top, L + f.F(250), cmdBottom});
+        if (m_page != Page::Driver) Place(item(CmdElevate), {L, top, L + f.F(250), cmdBottom});
         const float fx = std::max(x + f.F(22), R - f.F(400));
         m_filterBox = {fx, top, R, cmdBottom};
         placeEdit(m_filterEdit, m_filterBox);
@@ -129,6 +129,7 @@ void MainWindow::Layout() {
             Place(item(id), {bx, bottomTop, bx + f.F(width), B});
             bx += f.F(width) + f.F(8);
         }
+        if (m_page == Page::Driver) Place(item(CmdElevate), {R - f.F(250), bottomTop, R, B});
     }
 
     // Firewall: switch and policy, rule card, rule commands and the offload switch.
@@ -205,7 +206,7 @@ void MainWindow::ShowPage(Page page) {
     Settings::WriteDword(L"Page", static_cast<DWORD>(page));
     const bool capture = page == Page::Capture, firewall = page == Page::Firewall, simulator = page == Page::Simulator,
                processes = page == Page::Processes, driver = page == Page::Driver;
-    const bool elevate = capture && !m_driverOk && !IsElevated();
+    const bool elevate = (capture || driver) && !m_driverOk && !IsElevated();
     auto show = [&](HWND h, bool visible) {
         if (!h) return;
         if (!visible && GetFocus() == h) SetFocus(nullptr);
@@ -526,6 +527,10 @@ void MainWindow::PaintStatus(Canvas& c) {
                                    : m_statusLevel == Level::Success ? Color::Success
                                                                      : Color::Text2;
         c.Text(m_statusText, middle, Font::Caption, color);
+        return;
+    }
+    if (!m_driverOk && !m_driverText.empty()) {
+        c.Text(m_driverText, middle, Font::Caption, Color::Caution);
         return;
     }
     const bool capturing = m_ctl->Capturing();

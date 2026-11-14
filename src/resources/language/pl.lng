@@ -416,3 +416,5 @@
 10378=Zatrzymany, ale wciąż podpięty: jego karty nie przenoszą ruchu
 10379=Uruchomić sterownik sieci?
 10380=Wyłączyć sterownik sieci?
+10381=Sterownik sieci nie jest zainstalowany. Kliknij {} powyżej, aby go zainstalować.
+10382=Sterownik sieci jest zatrzymany. Kliknij {} powyżej, aby go uruchomić.

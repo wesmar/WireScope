@@ -19,15 +19,30 @@ constexpr size_t kHistory = 120;  // 60 s of 500 ms samples
 void MainWindow::ConnectDriver() {
     if (auto r = m_bridge->Connect(); !r) {
         m_driverOk = false;
-        m_driverText = IsElevated() ? Text::Format(IDS_MSG_DRIVER, r.error()) : Text::Get(IDS_MSG_ADMIN);
+        m_driverText = IsElevated() ? r.error() : Text::Get(IDS_MSG_ADMIN);
         m_list.SetPlaceholder(m_driverText);
-        SetStatus(Level::Error, m_driverText);
+        SetStatus(Level::Warning, m_driverText);
         UpdateControls();
         return;
     }
     m_driverOk = true;
     if (const std::wstring notice = m_ctl->Attach(); !notice.empty()) SetStatus(m_ctl->CanControl() ? Level::Warning : Level::Info, notice);
     RefreshAdapters();
+}
+
+void MainWindow::UpdateDriverPrompt(bool notifyStatus) {
+    if (m_driverOk) return;
+    if (!IsElevated()) {
+        m_driverText = Text::Get(IDS_MSG_ADMIN);
+    } else if (m_drvKnown && !m_drvStatus.installed) {
+        m_driverText = Text::Format(IDS_DRV_PROMPT_INSTALL, Text::Get(IDS_DRV_INSTALL));
+    } else if (m_drvKnown && (!m_drvStatus.Running() || !m_drvStatus.Attached())) {
+        m_driverText = Text::Format(IDS_DRV_PROMPT_START, Text::Get(IDS_DRV_START));
+    }
+    m_list.SetPlaceholder(m_driverText);
+    if (notifyStatus && !m_driverText.empty()) {
+        SetStatus(Level::Warning, m_driverText);
+    }
 }
 
 void MainWindow::RefreshAdapters() {

@@ -416,3 +416,5 @@
 10378=Arrestato mentre è ancora collegato: le sue schede non trasmettono traffico
 10379=Avviare il driver di rete?
 10380=Disabilitare il driver di rete?
+10381=Il driver di rete non è installato. Fai clic su {} in alto per installarlo.
+10382=Il driver di rete è arrestato. Fai clic su {} in alto per avviarlo.

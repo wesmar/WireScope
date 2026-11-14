@@ -149,6 +149,7 @@ void MainWindow::OnCreate() {
     ConnectDriver();
     RestoreMonitor();
     RefreshRuleRows();
+    if (!m_driverOk) m_page = Page::Driver;
     ShowPage(m_page);
     UpdateControls();
     SetTimer(m_hwnd, kUiTimer, kUiTimerMs, nullptr);

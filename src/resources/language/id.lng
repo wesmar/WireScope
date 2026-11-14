@@ -416,3 +416,5 @@
 10378=Berhenti tetapi masih terpasang: adaptornya tidak membawa lalu lintas
 10379=Mulai driver jaringan?
 10380=Nonaktifkan driver jaringan?
+10381=Driver jaringan belum terpasang. Klik {} di atas untuk memasangnya.
+10382=Driver jaringan sedang berhenti. Klik {} di atas untuk menjalankannya.

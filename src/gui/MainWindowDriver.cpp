@@ -89,6 +89,7 @@ void MainWindow::OnDriverJobDone(LPARAM lParam) {
             RestoreMonitor();
         }
     }
+    if (!m_driverOk) UpdateDriverPrompt(result->done.empty());
     UpdateControls();
     Layout();
 }

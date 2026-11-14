@@ -72,6 +72,7 @@ private:
 
     // State (MainWindowState.cpp)
     void ConnectDriver();
+    void UpdateDriverPrompt(bool notifyStatus = true);
     void RefreshAdapters();
     void UpdateControls();
     void SetStatus(Level level, std::wstring text);

@@ -416,3 +416,5 @@
 10378=Zastaveno, ale stále připojeno: jeho adaptéry nepřenášejí provoz
 10379=Spustit síťový ovladač?
 10380=Zakázat síťový ovladač?
+10381=Síťový ovladač není nainstalován. Klikněte na {} výše pro jeho instalaci.
+10382=Síťový ovladač je zastaven. Klikněte na {} výše pro jeho spuštění.

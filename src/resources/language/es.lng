@@ -416,3 +416,5 @@
 10378=Detenido mientras sigue acoplado: sus adaptadores no transportan tráfico
 10379=¿Iniciar el controlador de red?
 10380=¿Deshabilitar el controlador de red?
+10381=El controlador de red no está instalado. Haga clic en {} arriba para instalarlo.
+10382=El controlador de red está detenido. Haga clic en {} arriba para iniciarlo.

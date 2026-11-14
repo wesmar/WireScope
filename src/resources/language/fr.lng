@@ -416,3 +416,5 @@
 10378=Arrêté alors qu'il est encore attaché : ses cartes ne transmettent aucun trafic
 10379=Démarrer le pilote réseau ?
 10380=Désactiver le pilote réseau ?
+10381=Le pilote réseau n'est pas installé. Cliquez sur {} ci-dessus pour l'installer.
+10382=Le pilote réseau est arrêté. Cliquez sur {} ci-dessus pour le démarrer.
