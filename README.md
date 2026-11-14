@@ -546,7 +546,7 @@ Live Sessions — combinable; terminate with Ctrl+C, --duration, or --count
 
 English is compiled directly into `WireScope.exe` via `src/resources/lang/en.rc`. External translations reside in `language\<code>.lng` next to the executable as UTF-8 key-value files generated and validated from a single schema in `tools/strings.py`. Any missing key or mismatched format placeholder falls back individually to the built-in English string.
 
-**Supported localization set — 381 strings per language, matching the [Linux Live](https://github.com/wesmar/linux-live) localization architecture:**
+**Supported localization set — 383 strings per language, matching the [Linux Live](https://github.com/wesmar/linux-live) localization architecture:**
 - English — built-in
 - Polish — `pl`, Polski
 - German — `de`, Deutsch

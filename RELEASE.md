@@ -51,7 +51,7 @@ Watch the 35-second 1080p 60fps walkthrough on YouTube:
 
 ---
 
-## Shipped Languages (100% Coverage, 381 Strings)
+## Shipped Languages (100% Coverage, 383 Strings)
 
 The graphical interface automatically matches the Windows display language:
 * **English** (built-in reference)
