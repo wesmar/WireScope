@@ -82,7 +82,7 @@ The graphical interface automatically matches the Windows display language:
 
 | File | Format | Contents | Size | SHA-256 Digest |
 |---|---|---|---|---|
-| `WireScope.7z` | 7-Zip AES-256 | `WireScope.exe`, `language/*.lng` (20 languages) | 623,072 bytes (609 KiB) | `63abcfd2db130eeafd84cb6c05665c45266b2081f1c193614151564dc1338feb` |
+| `WireScope.7z` | 7-Zip AES-256 | `WireScope.exe`, `language/*.lng` (20 languages) | 623,072 bytes (609 KiB) | `af92815726b2ec4482d0c2a2316ec90400a8076934130f4b0c0e5892e69d36fd` |
 
 ---
 
